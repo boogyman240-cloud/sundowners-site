@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sundowners SFV MC | 3rd Annual Car & Bike Show</title>
+  <style>
+    :root {
+      --gold: #f2cf1d;
+      --gold-dark: #caa90a;
+      --black: #0d0d0d;
+      --charcoal: #171717;
+      --cream: #f5f1e8;
+      --muted: #cfc7b7;
+      --card: rgba(255,255,255,0.06);
+      --border: rgba(242,207,29,0.3);
+    }
+
+    * { box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      background: linear-gradient(rgba(0,0,0,.68), rgba(0,0,0,.78)), url('flyer.jpg') center/cover fixed;
+      color: white;
+    }
+
+    .overlay {
+      min-height: 100vh;
+      backdrop-filter: blur(2px);
+    }
+
+    .container {
+      width: min(1120px, calc(100% - 32px));
+      margin: 0 auto;
+    }
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      background: rgba(8,8,8,.82);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(255,255,255,.08);
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+      padding: 14px 0;
+      flex-wrap: wrap;
+    }
+
+    .brand {
+      font-weight: 900;
+      letter-spacing: 1px;
+      color: var(--gold);
+      font-size: 1.05rem;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 18px;
+      flex-wrap: wrap;
+    }
+
+    .nav-links a {
+      color: #fff;
+      text-decoration: none;
+      font-size: 0.95rem;
+      opacity: .9;
+    }
+
+    .hero {
+      padding: 72px 0 42px;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.15fr .85fr;
+      gap: 26px;
+      align-items: center;
+    }
+
+    .eyebrow {
+      display: inline-block;
+      background: rgba(242,207,29,.13);
+      color: var(--gold);
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      padding: 8px 14px;
+      font-size: .88rem;
+      font-weight: 700;
+      letter-spacing: .4px;
+      margin-bottom: 18px;
+    }
+
+    h1 {
+      font-size: clamp(2.2rem, 6vw, 5rem);
+      line-height: .95;
+      margin: 0 0 14px;
+      text-transform: uppercase;
+      font-weight: 900;
+      letter-spacing: 1px;
+    }
+
+    h1 .gold { color: var(--gold); }
+
+    .subhead {
+      font-size: clamp(1rem, 2vw, 1.25rem);
+      color: var(--cream);
+      max-width: 700px;
+      line-height: 1.6;
+      margin: 0 0 24px;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+      margin-bottom: 28px;
+    }
+
+    .btn {
+      display: inline-block;
+      text-decoration: none;
+      padding: 14px 20px;
+      border-radius: 14px;
+      font-weight: 800;
+      transition: transform .15s ease, opacity .15s ease;
+    }
+
+    .btn:hover { transform: translateY(-1px); }
+
+    .btn-primary {
+      background: var(--gold);
+      color: #111;
+    }
+
+    .btn-secondary {
+      border: 1px solid rgba(255,255,255,.18);
+      background: rgba(255,255,255,.06);
+      color: white;
+    }
+
+    .stat-row {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 14px;
+    }
+
+    .stat {
+      background: var(--card);
+      border: 1px solid rgba(255,255,255,.08);
+      border-radius: 18px;
+      padding: 18px;
+      box-shadow: 0 12px 30px rgba(0,0,0,.18);
+    }
+
+    .stat strong {
+      display: block;
+      color: var(--gold);
+      font-size: 1.4rem;
+      margin-bottom: 6px;
+    }
+
+    .stat span {
+      color: var(--muted);
+      font-size: .95rem;
+    }
+
+    .feature-card {
+      background: rgba(13,13,13,.78);
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      padding: 24px;
+      box-shadow: 0 18px 45px rgba(0,0,0,.35);
+    }
+
+    .feature-card img {
+      width: 100%;
+      border-radius: 16px;
+      display: block;
+      border: 1px solid rgba(255,255,255,.08);
+      margin-bottom: 16px;
+    }
+
+    .feature-card h2 {
+      margin: 0 0 10px;
+      font-size: 1.35rem;
+      color: var(--gold);
+    }
+
+    .feature-card p {
+      margin: 0;
+      color: var(--cream);
+      line-height: 1.65;
+    }
+
+    section.content {
+      padding: 28px 0 74px;
+    }
+
+    .section-title {
+      margin: 0 0 18px;
+      font-size: 2rem;
+      text-transform: uppercase;
+      letter-spacing: .6px;
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+
+    .card {
+      background: rgba(13,13,13,.76);
+      border: 1px solid rgba(255,255,255,.08);
+      border-radius: 22px;
+      padding: 22px;
+      box-shadow: 0 12px 35px rgba(0,0,0,.2);
+    }
+
+    .card h3 {
+      margin: 0 0 10px;
+      color: var(--gold);
+      font-size: 1.15rem;
+    }
+
+    .card p, .card li {
+      color: var(--cream);
+      line-height: 1.65;
+    }
+
+    .card ul {
+      margin: 0;
+      padding-left: 18px;
+    }
+
+    .location-box {
+      margin-top: 20px;
+      background: linear-gradient(135deg, rgba(242,207,29,.12), rgba(255,255,255,.04));
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      padding: 24px;
+    }
+
+    .location-box p {
+      margin: 8px 0;
+      color: var(--cream);
+      line-height: 1.7;
+    }
+
+    footer {
+      padding: 28px 0 46px;
+      border-top: 1px solid rgba(255,255,255,.08);
+      background: rgba(0,0,0,.45);
+      color: var(--muted);
+      text-align: center;
+    }
+
+    @media (max-width: 920px) {
+      .hero-grid,
+      .cards,
+      .stat-row {
+        grid-template-columns: 1fr;
+      }
+
+      .hero {
+        padding-top: 44px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="overlay">
+    <div class="topbar">
+      <div class="container nav">
+        <div class="brand">SUNDOWNERS SFV MC</div>
+        <div class="nav-links">
+          <a href="#about">About</a>
+          <a href="#details">Event Details</a>
+          <a href="#location">Location</a>
+        </div>
+      </div>
+    </div>
+
+    <main>
+      <section class="hero">
+        <div class="container hero-grid">
+          <div>
+            <div class="eyebrow">3rd Annual Car &amp; Bike Show</div>
+            <h1><span class="gold">Sundowners</span><br>SFV MC</h1>
+            <p class="subhead">
+              Join us for a laid-back community show featuring custom cars, bikes, food, raffle prizes, and awards.
+              Bring your ride, bring your friends, and spend the morning with us in San Fernando.
+            </p>
+
+            <div class="hero-actions">
+              <a class="btn btn-primary" href="#details">See Event Details</a>
+              <a class="btn btn-secondary" href="flyer.jpg" target="_blank" rel="noopener">Open Original Flyer</a>
+            </div>
+
+            <div class="stat-row">
+              <div class="stat">
+                <strong>April 18</strong>
+                <span>Saturday, 2026</span>
+              </div>
+              <div class="stat">
+                <strong>9 AM–1 PM</strong>
+                <span>Show hours</span>
+              </div>
+              <div class="stat">
+                <strong>$10</strong>
+                <span>Entry fee</span>
+              </div>
+              <div class="stat">
+                <strong>San Fernando</strong>
+                <span>Santa Rosa Church lot</span>
+              </div>
+            </div>
+          </div>
+
+          <aside class="feature-card">
+            <img src="flyer.jpg" alt="Sundowners SFV MC 3rd Annual Car and Bike Show flyer" />
+            <h2>Featured Event Flyer</h2>
+            <p>
+              This landing page turns the original flyer into a cleaner event page while still keeping the full flyer visible for sharing and quick reference.
+            </p>
+          </aside>
+        </div>
+      </section>
+
+      <section class="content" id="about">
+        <div class="container">
+          <h2 class="section-title">What to Expect</h2>
+          <div class="cards">
+            <div class="card">
+              <h3>Cars &amp; Bikes</h3>
+              <p>Check out featured rides, meet fellow enthusiasts, and enjoy a morning built around the local car and motorcycle scene.</p>
+            </div>
+            <div class="card">
+              <h3>Food, Raffle, Awards</h3>
+              <p>The flyer lists food, raffle activities, and awards, giving the event a fun community-show feel instead of just a parking lot meetup.</p>
+            </div>
+            <div class="card">
+              <h3>Easy Entry</h3>
+              <p>A simple $10 entry fee makes it easy for attendees and participants to come through and enjoy the event.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="content" id="details">
+        <div class="container">
+          <h2 class="section-title">Event Details</h2>
+          <div class="cards">
+            <div class="card">
+              <h3>Date &amp; Time</h3>
+              <ul>
+                <li>Saturday, April 18, 2026</li>
+                <li>9:00 AM to 1:00 PM</li>
+              </ul>
+            </div>
+            <div class="card">
+              <h3>Entry</h3>
+              <ul>
+                <li>$10 entry fee</li>
+                <li>Food available</li>
+                <li>Raffle and awards</li>
+              </ul>
+            </div>
+            <div class="card">
+              <h3>Good For</h3>
+              <ul>
+                <li>Families and friends</li>
+                <li>Car and bike enthusiasts</li>
+                <li>Local community support</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="content" id="location">
+        <div class="container">
+          <h2 class="section-title">Location</h2>
+          <div class="location-box">
+            <p><strong>Address:</strong> 701 S. Kalisher St, San Fernando, CA</p>
+            <p><strong>Venue:</strong> Santa Rosa Church parking lot</p>
+            <p><strong>Tip:</strong> Add a Google Maps button here later if you want this page to be even more useful for visitors on their phones.</p>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      Sundowners SFV MC • 3rd Annual Car &amp; Bike Show • Built as a simple static landing page
+    </footer>
+  </div>
+</body>
+</html>
