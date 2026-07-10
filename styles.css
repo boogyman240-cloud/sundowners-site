@@ -258,7 +258,27 @@ footer {
   color: var(--muted);
   text-align: center;
 }
+.intro-row {
+  display: grid;
+  grid-template-columns: 420px 320px;
+  justify-content: space-between;
+  align-items: start;
+  gap: 40px;
+  margin: 0 0 24px;
+  width: 100%;
+}
 
+.intro-text {
+  margin: 0;
+  max-width: 420px;
+}
+
+.intro-image {
+  width: 320px;
+  border-radius: 16px;
+  display: block;
+  justify-self: end;
+}
 @media (max-width: 920px) {
   .hero-grid,
   .cards,
