@@ -260,7 +260,7 @@ footer {
 }
 .intro-row {
   display: grid;
-  grid-template-columns: 420px 320px;
+  grid-template-columns: 560px 320px;
   justify-content: space-between;
   align-items: start;
   gap: 40px;
@@ -270,7 +270,7 @@ footer {
 
 .intro-text {
   margin: 0;
-  max-width: 420px;
+  max-width: 560px;
 }
 
 .intro-image {
